@@ -7,7 +7,7 @@ const passport = require("passport");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const db = require("./db");
 const sessionStore = new SequelizeStore({ db });
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const socketio = require("socket.io");
 module.exports = app;
@@ -59,7 +59,7 @@ const createApp = () => {
 
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
-      const err = new Error("Not found");
+      const err = new Error("Not Found");
       err.status = 404;
       next(err);
     } else {
@@ -68,6 +68,7 @@ const createApp = () => {
   });
 
   app.use("*", (req, res) => {
+    console.log("REQ", req);
     res.sendFile(path.join(__dirname, "..", "public/index.html"));
   });
 

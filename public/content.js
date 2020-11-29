@@ -1,3 +1,4 @@
+
 let posts = document.getElementsByClassName("_3-miAEojrCvx_4FQ8x3P-s");
 let end = 0;
 let start = 0;
@@ -67,4 +68,5 @@ function injectButton(post) {
   console.log("WHAT THE HECK");
   //   element.style["background-color"] = "#FF00FF";
   // }
+
 }

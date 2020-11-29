@@ -17,7 +17,7 @@ const Transaction = db.define("transaction", {
     },
   },
   amount: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     allowNull: false,
     validate: {
       notEmpty: true,
