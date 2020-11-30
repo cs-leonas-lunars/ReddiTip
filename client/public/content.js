@@ -2,6 +2,7 @@ let start = 0;
 let allPosts = Array.from(
   document.getElementsByClassName("_3-miAEojrCvx_4FQ8x3P-s")
 );
+
 let allUsers = Array.from(
   document.querySelectorAll(
     "div[class='_3AStxql1mQsrZuUIFP9xSg nU4Je7n-eSXStTBAPMYt8']"
@@ -12,10 +13,12 @@ let allHeaders = Array.from(
 );
 let end = allPosts.length;
 
-allPosts.map((post, idx) => {
-  let tag = allHeaders[idx].children[0].children[0].innerText;
-  if (tag !== "PROMOTED") injectButton(post, idx);
-});
+window.onload = () => {
+  allPosts.map((post, idx) => {
+    let tag = allHeaders[idx].children[0].children[0].innerText;
+    if (tag.toLowerCase() !== "promoted") injectButton(post, idx);
+  });
+}
 
 function findPosts() {
   start = end;
@@ -35,7 +38,7 @@ function findPosts() {
   let posts = allPosts.slice(start, end);
   posts.map((post, idx) => {
     let tag = allHeaders[idx + start].children[0].children[0].innerText;
-    if (tag !== "PROMOTED") injectButton(post, idx + start);
+    if (tag.toLowerCase() !== "promoted") injectButton(post, idx + start);
   });
 }
 
