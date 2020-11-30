@@ -1,9 +1,23 @@
 let start = 0;
-let end = 0;
-allUsers = [];
-allPosts = [];
+let allPosts = Array.from(
+  document.getElementsByClassName("_3-miAEojrCvx_4FQ8x3P-s")
+);
+let allUsers = Array.from(
+  document.querySelectorAll(
+    "div[class='_3AStxql1mQsrZuUIFP9xSg nU4Je7n-eSXStTBAPMYt8']"
+  )
+);
+let allHeaders = Array.from(
+  document.querySelectorAll("div[class='cZPZhMe-UCZ8htPodMyJ5']")
+);
+let end = allPosts.length;
 
-function findPosts(startStatus) {
+allPosts.map((post, idx) => {
+  let tag = allHeaders[idx].children[0].children[0].innerText;
+  if (tag !== "PROMOTED") injectButton(post, idx);
+});
+
+function findPosts() {
   start = end;
   allPosts = Array.from(
     document.getElementsByClassName("_3-miAEojrCvx_4FQ8x3P-s")
@@ -13,14 +27,16 @@ function findPosts(startStatus) {
       "div[class='_3AStxql1mQsrZuUIFP9xSg nU4Je7n-eSXStTBAPMYt8']"
     )
   );
+  allHeaders = Array.from(
+    document.querySelectorAll("div[class='cZPZhMe-UCZ8htPodMyJ5']")
+  );
   end = allPosts.length;
 
-  if (startStatus)
-    Array.from(allPosts).map((post, idx) => injectButton(post, idx));
-  else {
-    let posts = Array.from(allPosts).slice(start, end);
-    posts.map((post, idx) => injectButton(post, idx + start));
-  }
+  let posts = allPosts.slice(start, end);
+  posts.map((post, idx) => {
+    let tag = allHeaders[idx + start].children[0].children[0].innerText;
+    if (tag !== "PROMOTED") injectButton(post, idx + start);
+  });
 }
 
 function injectButton(post, idx) {
@@ -35,6 +51,4 @@ function injectButton(post, idx) {
   post.appendChild(btn);
 }
 
-document.addEventListener("scroll", () => findPosts(false));
-
-findPosts(true);
+document.addEventListener("scroll", () => findPosts());
