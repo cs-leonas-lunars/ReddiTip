@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "ReddiTip",
+  "name": "Topper",
   "description": "Tip your favorite Reddit contributors with bitcoin over the Lightning Network",
   "version": "0.0.1",
 
@@ -10,7 +10,14 @@
     "default_title": "Open the popup"
   },
   "icons": {
+    "128": "./images/icon128.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-Hw90DfXnkuRMksenMHAutiyv7JmCo+eN/gokjCOxs0s='; object-src 'self'",  "permissions": [
+  "content_security_policy": "script-src 'self' 'sha256-Hw90DfXnkuRMksenMHAutiyv7JmCo+eN/gokjCOxs0s='; object-src 'self'",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
   ]
 }

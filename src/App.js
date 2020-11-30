@@ -30,14 +30,10 @@ function App() {
 
 function toggleMenu(status) {
   if (status) {
-    document.getElementById("overlay").style.cssText =
-      "background-color: rgb(0, 0, 0, 0.15)";
     document.getElementById("menu").style.cssText =
       "width: 0vw; box-shadow: 0px 0px 0px 0px #000";
     document.getElementById("closeMenu").style.cssText = "right: -75vw";
   } else {
-    document.getElementById("overlay").style.cssText =
-      "background-color: rgb(0, 0, 0, 0.6)";
     document.getElementById("menu").style.cssText =
       "width: 80vw; box-shadow: -20px 0px 40px -40px #000";
     document.getElementById("closeMenu").style.cssText = "right: 5vw";
