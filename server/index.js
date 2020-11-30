@@ -7,7 +7,7 @@ const passport = require("passport");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const db = require("./db");
 const sessionStore = new SequelizeStore({ db });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 // const socketio = require("socket.io");
 module.exports = app;
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "test") {
   after("close the session store", () => sessionStore.stopExpiringSessions());
 }
 
-if (process.env.NODE_ENV !== "production") require("../secrets");
+// if (process.env.NODE_ENV !== "production") require("../secrets");
 
 passport.serializeUser((user, done) => {
   let sessionUser = { id: user.id };
@@ -52,10 +52,10 @@ const createApp = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use("/auth", require("./auth"));
+  // app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
 
-  app.use(express.static(path.join(__dirname, "..", "public")));
+  //   app.use(express.static(path.join(__dirname, "..", "public")));
 
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -67,10 +67,10 @@ const createApp = () => {
     }
   });
 
-  app.use("*", (req, res) => {
-    console.log("REQ", req);
-    res.sendFile(path.join(__dirname, "..", "public/index.html"));
-  });
+  //   app.use("*", (req, res) => {
+  //     console.log("REQ", req);
+  //     res.sendFile(path.join(__dirname, "..", "public/index.html"));
+  //   });
 
   app.use((err, req, res, next) => {
     console.error(err);

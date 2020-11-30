@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Transaction } = require("../db/models");
-const isLoggedIn = require("./middleware/isLoggedIn");
-const isAdminUser = require("./middleware/isAdminUser");
+// const isLoggedIn = require("./middleware/isLoggedIn");
+// const isAdminUser = require("./middleware/isAdminUser");
 module.exports = router;
 
 //GET USER TRANSACTION HISTORY
@@ -13,21 +13,20 @@ router.get("/:id", async (req, res, next) => {
         userId: req.params.id,
       },
     });
-    res.send(transactions)
+    res.send(transactions);
   } catch (err) {
     console.error(err);
     next(err); // <-- do we need that
   }
 });
 
-
 //NEW TRANSACTION
 
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
-    const newTransaction = await Transaction.create(req.body)
-    res.send(newTransaction)
-  } catch(err) {
-    console.error(err)
+    const newTransaction = await Transaction.create(req.body);
+    res.send(newTransaction);
+  } catch (err) {
+    console.error(err);
   }
-})
+});
