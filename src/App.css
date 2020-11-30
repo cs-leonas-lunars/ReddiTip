@@ -41,11 +41,11 @@
 
 #brandIcon {
   position: absolute;
-  width: 120px;
+  width: 105px;
   height: auto;
-  top: 15vh;
+  top: 17vh;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -52.5px;
   z-index: 2;
 }
 
