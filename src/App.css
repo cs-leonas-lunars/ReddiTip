@@ -1,189 +1,12 @@
-@font-face {
-  font-family: PoetsenOne;
-  src: url("./fonts/PoetsenOne-Regular.ttf");
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url("./fonts/Montserrat-Bold.ttf");
-}
-
-@font-face {
-  font-family: Montserrat-Thin;
-  src: url("./fonts/Montserrat-Thin.ttf");
-}
-
-@font-face {
-  font-family: Montserrat-ExtraThin;
-  src: url("./fonts/Montserrat-ExtraThin.otf");
-}
-
 .App {
   text-align: center;
-  background-color: transparent;
 }
 
-#background {
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
+.App-logo {
+  height: 40vmin;
+  margin: 0 auto;
+  pointer-events: none;
 }
-
-#overlay {
-  position: absolute;
-  background-color: rgb(0, 0, 0, 0.15);
-  filter: blur(100px);
-  -webkit-filter: blur(100px);
-  height: 100vh;
-  width: 100vw;
-  transition: background-color 0.5s;
-  z-index: 1;
-}
-
-#brandIcon {
-  position: absolute;
-  width: 120px;
-  height: auto;
-  top: 15vh;
-  left: 50%;
-  margin-left: -60px;
-  z-index: 2;
-}
-
-#logoText {
-  position: absolute;
-  font-size: 2.5rem;
-  text-align: center;
-  color: #fff;
-  font-family: PoetsenOne;
-  width: 100vw;
-  bottom: 40vh;
-  z-index: 2;
-}
-
-#login {
-  position: absolute;
-  width: 150px;
-  height: 50px;
-  left: 50%;
-  margin-left: -75px;
-  bottom: 25vh;
-  background-color: #fff;
-  border-radius: 100vh;
-  border-width: 0;
-  cursor: pointer;
-  outline: none;
-  z-index: 2;
-}
-
-#loginText {
-  position: absolute;
-  width: 80%;
-  top: -1%;
-  right: 0%;
-  font-size: 1rem;
-  font-family: Montserrat-Bold;
-  text-align: center;
-  color: #eb6c6c;
-  cursor: pointer;
-  z-index: 3;
-}
-
-#circle {
-  position: absolute;
-  background-color: #eb6c6c;
-  height: 40px;
-  width: 40px;
-  top: 5px;
-  left: 5px;
-  border-radius: 100vh;
-  z-index: 3;
-}
-
-#redditIcon {
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  top: 10px;
-  left: 9px;
-  z-index: 3;
-}
-
-#signup {
-  position: absolute;
-  width: 60vw;
-  height: 50px;
-  left: 20vw;
-  bottom: 15vh;
-  font-size: 0.85rem;
-  font-family: Montserrat-Thin;
-  text-align: center;
-  background-color: transparent;
-  color: #fff;
-  border-radius: 100vh;
-  border-width: 0;
-  cursor: pointer;
-  outline: none;
-  z-index: 2;
-}
-
-#ethereumText {
-  position: absolute;
-  font-size: 0.6rem;
-  text-align: center;
-  color: #fff;
-  font-family: Montserrat-ExtraThin;
-  width: 100vw;
-  bottom: 3.5vw;
-  z-index: 2;
-  display: none;
-}
-
-#menuButton {
-  position: absolute;
-  top: 3.5vw;
-  right: 5vw;
-  font-size: 3rem;
-  font-family: Montserrat-Thin;
-  text-align: center;
-  background-color: transparent;
-  color: #fff;
-  border-radius: 100vh;
-  border-width: 0;
-  cursor: pointer;
-  outline: none;
-  z-index: 2;
-}
-
-#menu {
-  position: absolute;
-  background-color: #fff;
-  height: 100vh;
-  width: 0vw;
-  right: 0vw;
-  border-radius: 40px 0px 0px 40px;
-  transition: width 0.5s, box-shadow 0.5s;
-  z-index: 3;
-}
-
-#closeMenu {
-  position: absolute;
-  top: 2.5vw;
-  right: -75vw;
-  font-size: 3rem;
-  font-family: Montserrat-Thin;
-  text-align: center;
-  background-color: transparent;
-  color: #eb6c6c;
-  border-radius: 100vh;
-  border-width: 0;
-  cursor: pointer;
-  outline: none;
-  transform: rotate(45deg);
-  transition: right 0.5s;
-  z-index: 4;
-}
-
 /*
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -192,7 +15,7 @@
 } */
 
 .App-header {
-  background-color: transparent;
+  background-color: #282c34;
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
@@ -201,6 +24,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-link {
+  color: #61dafb;
 }
 
 /* @keyframes App-logo-spin {
