@@ -12,7 +12,7 @@
   "icons": {
     "128": "./images/icon128.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-Hw90DfXnkuRMksenMHAutiyv7JmCo+eN/gokjCOxs0s='; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'sha256-2f2/1D0emiWe/SLg6UTAOT3O6C6C61kbslq01Bv7g+A='; object-src 'self'",
   "permissions": [],
   "content_scripts": [
     {
