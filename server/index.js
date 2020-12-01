@@ -9,8 +9,12 @@ const db = require("./db");
 const sessionStore = new SequelizeStore({ db });
 const PORT = process.env.PORT || 5000;
 const app = express();
+const dotenv = require("dotenv");
+const cors = require("cors");
 // const socketio = require("socket.io");
 module.exports = app;
+
+dotenv.config();
 
 if (process.env.NODE_ENV === "test") {
   after("close the session store", () => sessionStore.stopExpiringSessions());
@@ -18,16 +22,12 @@ if (process.env.NODE_ENV === "test") {
 
 // if (process.env.NODE_ENV !== "production") require("../secrets");
 
-passport.serializeUser((user, done) => {
-  let sessionUser = { id: user.id };
-  done(null, sessionUser);
-});
+passport.serializeUser((user, done) => done(null, user.id));
 
-passport.deserializeUser(async (sessionUser, done) => {
+passport.deserializeUser(async (id, done) => {
   try {
-    const user = await db.models.user.findByPk(sessionUser.id);
-    sessionUser.userType = user.userType;
-    done(null, sessionUser);
+    const user = await db.models.user.findByPk(id);
+    done(null, user);
   } catch (err) {
     done(err);
   }
@@ -35,6 +35,8 @@ passport.deserializeUser(async (sessionUser, done) => {
 
 const createApp = () => {
   app.use(morgan("dev"));
+
+  app.use(cors({ origin: true, credentials: true }));
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -52,10 +54,10 @@ const createApp = () => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // app.use("/auth", require("./auth"));
+  app.use("/auth", require("./auth"));
   app.use("/api", require("./api"));
 
-  //   app.use(express.static(path.join(__dirname, "..", "public")));
+  // app.use(express.static(path.join(__dirname, "..", "public")));
 
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {

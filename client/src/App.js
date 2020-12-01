@@ -2,6 +2,8 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { loadWeb3, loadBlockchainData } from "./loadData";
 import { me, login, logout } from "./userActions";
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:5000";
 
 function App() {
   const [state, setState] = useState({ initialData: null, loading: true });

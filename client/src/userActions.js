@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const me = async () => {
   try {
-    const res = await axios.get("/auth/account");
+    const res = await axios.get("/auth/me");
     return res;
   } catch (err) {
     console.error(err);
@@ -38,9 +38,14 @@ export const logout = async () => {
 // after getting reddit credentials there needs to be a redirect where the user can put in their wallet address or easily create one if they dont already have one
 export const login = async () => {
   try {
-    const res = await axios.get("/auth/reddit");
+    const res = await axios.get(
+      "/auth/reddit"
+      //   headers: {
+      //     "Access-Control-Allow-Origin": "*",
+      //   },
+    );
     console.log(res, "RES");
-    return res;
+    // return res;
   } catch (err) {
     console.error(err);
   }
