@@ -1,6 +1,27 @@
 import "./App.css";
+import React, { useState, useEffect } from "react";
+import { loadWeb3, loadBlockchainData } from "./loadData";
 
 function App() {
+  const [state, setState] = useState({ initialData: null, loading: true });
+  const [user, setUser] = useState(null);
+
+  //useEffect for blockchain stuff
+  useEffect(() => {
+    setState({ initialData: null, loading: true });
+    loadWeb3()
+      .then(() => loadBlockchainData())
+      .then((x) => setState({ initialData: x, loading: false }));
+  }, []);
+
+  //useEffect for user
+  // useEffect(() => {
+  //   setUser(null);
+  //   me()
+  //     .then((x) => setUser(x))
+  //     .catch((err) => console.error(err));
+  // }, []);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -22,55 +43,6 @@ function App() {
         <div id="menu"></div>
         <button id="closeMenu" onClick={() => toggleMenu(true)}>
           +
-        </button>
-        <button
-          style={{
-            position: "absolute",
-            width: "150px",
-            height: "50px",
-            left: "50%",
-            marginLeft: "-75px",
-            bottom: "5vh",
-            backgroundColor: "transparent",
-            backdropFilter: "blur(35px)",
-            borderRadius: "100vh",
-            borderWidth: 0,
-            cursor: "pointer",
-            outline: "none",
-            transition: "backgroundColor 0.35s",
-            zIndex: 2,
-          }}
-        >
-          <img
-            alt="topper icon"
-            id="topperIcon"
-            src="/images/icon128.png"
-            style={{
-              position: "absolute",
-              height: "30px",
-              width: "30px",
-              top: "10px",
-              left: "14px",
-              zIndex: 3,
-            }}
-          />
-          <p
-            id="topperText"
-            style={{
-              position: "absolute",
-              width: "82.5%",
-              top: "-1%",
-              right: "0%",
-              fontSize: "1rem",
-              fontFamily: "Montserrat-Bold",
-              textAlign: "center",
-              color: "#444",
-              cursor: "pointer",
-              zIndex: 3,
-            }}
-          >
-            Tip ETH
-          </p>
         </button>
       </header>
     </div>
