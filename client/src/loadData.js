@@ -1,16 +1,26 @@
 import Web3 from "web3";
+import Fortmatic from "fortmatic";
 // import EtherExchange from "../abis/EtherExchange.json";
+
+let fm = new Fortmatic("pk_test_E28EBDED6FA415DC");
+let web3 = new Web3(fm.getProvider());
 
 export const loadWeb3 = async () => {
   if (window.ethereum) {
+    // Use MetaMask provider
     window.web3 = new Web3(window.ethereum);
-    await window.ethereum.enable();
-  } else if (window.web3) {
-    window.web3 = new Web3(window.web3.currentProvider);
   } else {
-    window.alert(
-      "Non-Ethereum browser detected. You should consider trying MetaMask!"
-    );
+    // Use Fortmatic provider
+    window.web3 = new Web3(fm.getProvider());
+  }
+
+  //Legacy dApp browsers which web3 is still being injected
+  if (typeof web3 !== "undefined") {
+    // Use injected provider
+    window.web3 = new Web3(web3.currentProvider);
+  } else {
+    // Use Fortmatic provider
+    window.web3 = new Web3(fm.getProvider());
   }
 };
 
