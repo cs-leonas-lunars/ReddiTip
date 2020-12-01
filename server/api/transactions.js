@@ -8,7 +8,7 @@ module.exports = router;
 //is it necessary to send the user id?
 router.get("/:id", async (req, res, next) => {
   try {
-    const transactions = await transactions.findAll({
+    const transactions = await Transaction.findAll({
       where: {
         userId: req.params.id,
       },
