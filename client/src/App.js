@@ -23,6 +23,55 @@ function App() {
         <button id="closeMenu" onClick={() => toggleMenu(true)}>
           +
         </button>
+        <button
+          style={{
+            position: "absolute",
+            width: "150px",
+            height: "50px",
+            left: "50%",
+            marginLeft: "-75px",
+            bottom: "5vh",
+            backgroundColor: "transparent",
+            backdropFilter: "blur(35px)",
+            borderRadius: "100vh",
+            borderWidth: 0,
+            cursor: "pointer",
+            outline: "none",
+            transition: "backgroundColor 0.35s",
+            zIndex: 2,
+          }}
+        >
+          <img
+            alt="topper icon"
+            id="topperIcon"
+            src="/images/icon128.png"
+            style={{
+              position: "absolute",
+              height: "30px",
+              width: "30px",
+              top: "10px",
+              left: "14px",
+              zIndex: 3,
+            }}
+          />
+          <p
+            id="topperText"
+            style={{
+              position: "absolute",
+              width: "82.5%",
+              top: "-1%",
+              right: "0%",
+              fontSize: "1rem",
+              fontFamily: "Montserrat-Bold",
+              textAlign: "center",
+              color: "#444",
+              cursor: "pointer",
+              zIndex: 3,
+            }}
+          >
+            Tip ETH
+          </p>
+        </button>
       </header>
     </div>
   );
