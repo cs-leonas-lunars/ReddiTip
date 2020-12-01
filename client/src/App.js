@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { loadWeb3, loadBlockchainData } from "./loadData";
+import { me, login, logout } from "./userActions";
 
 function App() {
   const [state, setState] = useState({ initialData: null, loading: true });
@@ -14,13 +15,13 @@ function App() {
       .then((x) => setState({ initialData: x, loading: false }));
   }, []);
 
-  //useEffect for user
-  // useEffect(() => {
-  //   setUser(null);
-  //   me()
-  //     .then((x) => setUser(x))
-  //     .catch((err) => console.error(err));
-  // }, []);
+  // useEffect for user
+  useEffect(() => {
+    setUser(null);
+    me()
+      .then((x) => setUser(x))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="App">
@@ -35,7 +36,9 @@ function App() {
           <img id="redditIcon" src="/images/reddit.png" />
           <p id="loginText">Log In</p>
         </button>
-        <button id="signup">Create An Account</button>
+        <button id="signup" onClick={() => login()}>
+          Create An Account
+        </button>
         <p id="ethereumText">E T H E R E U M · P O W E R E D</p>
         <button id="menuButton" onClick={() => toggleMenu(false)}>
           =
