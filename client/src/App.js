@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { loadWeb3, loadBlockchainData } from "./loadData";
 import { me, login, logout } from "./userActions";
+const chrome = require("sinon-chrome");
 
 function App() {
   const [state, setState] = useState({ initialData: null, loading: true });
