@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 let start = 0;
 let allPosts = Array.from(
   document.getElementsByClassName("_3-miAEojrCvx_4FQ8x3P-s")
@@ -17,17 +18,13 @@ let allHeaders = Array.from(
 );
 let end = allPosts.length;
 
-window.onload = () => {
+const getValues = () => {
   let ethereum = window.localStorage.getItem("ethereum");
   let web3 = window.localStorage.getItem("web3");
-  chrome.runtime.sendMessage(
-    chrome.runtime.id,
-    { target: "app", message: "setMessage", body: { ethereum, web3 } },
-    (res) => {
-      console.log("SENT!");
-      console.log(res.msg);
-    }
-  );
+  return { ethereum, web3 };
+};
+
+window.onload = () => {
   allPosts.map((post, idx) => {
     let tag = allHeaders[idx].children[0].children[0].innerText;
     if (tag.toLowerCase() !== "promoted") injectButton(post, idx);

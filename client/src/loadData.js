@@ -7,7 +7,11 @@ let fm = new Fortmatic("pk_test_E28EBDED6FA415DC", "ropsten");
 fm.getProvider().isFortmatic = false;
 
 export const loadWeb3 = async () => {
-  console.log("WINDOW IN LOADWEB3: ", window);
+  const gettingPage = await chrome.runtime.getBackgroundPage();
+  let values = gettingPage.getValues();
+  window.ethereum = values.ethereum;
+  window.web3 = values.web3;
+  console.log(values);
   if (window.ethereum) {
     // || windowVariable.ethereum) {
     console.log("New Metamask!");

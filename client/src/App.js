@@ -10,17 +10,22 @@ function App() {
 
   //useEffect for blockchain stuff
   useEffect(() => {
-    chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
-      console.log("DATA: ", req);
-      sendResponse({ msg: "SUCCESS!" });
-      return true;
-    });
-    /*
+    // chrome.runtime.onConnect.addListener((port) => {
+    //   port.onMessage.addListener((req, sender, sendResponse) => {
+    //     console.log("DATA: ", req);
+    //     sendResponse({ msg: "SUCCESS!" });
+    //     return true;
+    //   });
+    // });
+    window.onload = () => {
+      setTimeout(() => {
+        console.log("APP JS WINDOW", window);
+      }, 5000);
       setState({ initialData: null, loading: true });
       loadWeb3()
         .then(() => loadBlockchainData())
         .then((x) => setState({ initialData: x, loading: false }));
-    */
+    };
   }, []);
 
   // useEffect for user
