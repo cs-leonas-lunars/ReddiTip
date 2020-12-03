@@ -1,12 +1,15 @@
 import Web3 from "web3";
 import Fortmatic from "fortmatic";
+import chrome from "sinon-chrome";
 // import EtherExchange from "../abis/EtherExchange.json";
 
 let fm = new Fortmatic("pk_test_E28EBDED6FA415DC", "ropsten");
 fm.getProvider().isFortmatic = false;
 
 export const loadWeb3 = async () => {
+  console.log("WINDOW IN LOADWEB3: ", window);
   if (window.ethereum) {
+    // || windowVariable.ethereum) {
     console.log("New Metamask!");
     window.web3 = new Web3(window.ethereum);
     await window.ethereum.enable();
@@ -46,7 +49,6 @@ export const loadBlockchainData = async () => {
   }
   // load contract
   // const etherExchangeData = EtherExchange.networks[networkId];
-
   // change below
   // if (etherExchangeData) {
   //   const etherExchange = new web3.eth.Contract(

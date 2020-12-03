@@ -13,11 +13,16 @@
     "128": "./images/icon128.png"
   },
   "content_security_policy": "script-src 'self' 'sha256-2f2/1D0emiWe/SLg6UTAOT3O6C6C61kbslq01Bv7g+A='; object-src 'self'",
-  "permissions": [],
+  "permissions": ["activeTab", "tabs", "storage"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js", "inject.js"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["background.js"],
+  "externally_connectable": {
+    "ids": ["eldblkjfmbhajfladajjicjacccfheii"],
+    "accepts_tls_channel_id": false
+  }
 }
