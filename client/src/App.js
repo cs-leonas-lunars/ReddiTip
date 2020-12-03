@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { loadWeb3, loadBlockchainData } from "./loadData";
 import { me, login, logout } from "./userActions";
-import chrome from "sinon-chrome";
 
 function App() {
   const [state, setState] = useState({ initialData: null, loading: true });
@@ -10,21 +9,9 @@ function App() {
 
   //useEffect for blockchain stuff
   useEffect(() => {
-    // chrome.runtime.onConnect.addListener((port) => {
-    //   port.onMessage.addListener((req, sender, sendResponse) => {
-    //     console.log("DATA: ", req);
-    //     sendResponse({ msg: "SUCCESS!" });
-    //     return true;
-    //   });
-    // });
     window.onload = () => {
-      setTimeout(() => {
-        console.log("APP JS WINDOW", window);
-      }, 5000);
       setState({ initialData: null, loading: true });
-      loadWeb3()
-        .then(() => loadBlockchainData())
-        .then((x) => setState({ initialData: x, loading: false }));
+      loadWeb3().then((x) => setState({ initialData: x, loading: false }));
     };
   }, []);
 

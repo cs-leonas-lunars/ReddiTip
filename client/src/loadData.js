@@ -4,27 +4,28 @@ import chrome from "sinon-chrome";
 // import EtherExchange from "../abis/EtherExchange.json";
 
 let fm = new Fortmatic("pk_test_E28EBDED6FA415DC", "ropsten");
-fm.getProvider().isFortmatic = false;
 
 export const loadWeb3 = async () => {
-  const gettingPage = await chrome.runtime.getBackgroundPage();
-  let values = gettingPage.getValues();
-  window.ethereum = values.ethereum;
-  window.web3 = values.web3;
-  console.log(values);
-  if (window.ethereum) {
-    // || windowVariable.ethereum) {
-    console.log("New Metamask!");
-    window.web3 = new Web3(window.ethereum);
-    await window.ethereum.enable();
-  } else if (window.web3) {
-    console.log("Old Metamask!");
-    window.web3 = new Web3(window.web3.currentProvider);
-  } else {
-    console.log("Fortmatic!");
-    fm.getProvider().isFortmatic = true;
-    window.web3 = new Web3(fm.getProvider());
-  }
+  setTimeout(async () => {
+    await chrome.storage.local.get("ethereum", (data) =>
+      console.log("Ethereum Data (loadData): ", data)
+    );
+    fm.getProvider().isFortmatic = false;
+    if (window.ethereum) {
+      // || windowVariable.ethereum) {
+      console.log("New Metamask!");
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    } else if (window.web3) {
+      console.log("Old Metamask!");
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      console.log("Fortmatic!");
+      fm.getProvider().isFortmatic = true;
+      window.web3 = new Web3(fm.getProvider());
+    }
+    return loadBlockchainData();
+  }, 2000);
 };
 
 export const loadBlockchainData = async () => {

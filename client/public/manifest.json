@@ -20,9 +20,5 @@
       "js": ["content.js", "inject.js"]
     }
   ],
-  "web_accessible_resources": ["background.js"],
-  "externally_connectable": {
-    "ids": ["eldblkjfmbhajfladajjicjacccfheii"],
-    "accepts_tls_channel_id": false
-  }
+  "web_accessible_resources": ["background.js"]
 }
